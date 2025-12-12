@@ -9,6 +9,7 @@ interface ShipStatus {
   size: number;
   hits: number;
   sunk: boolean;
+  positions?: { row: number, col: number }[];
 }
 
 @Component({
@@ -25,6 +26,8 @@ export class GameComponent {
   computerHits: boolean[][] = [];  // grille pour marquer hits/misses ordinateur
   computerHitsQueue: { row: number, col: number }[] = []; // cases à viser
   lastHit: { row: number, col: number } | null = null;
+  playerShips: ShipStatus[] = [];
+  computerShips: ShipStatus[] = [];
 
   playerTurn = true;
   gameOver = false;
@@ -33,6 +36,15 @@ export class GameComponent {
   constructor(private gameService: GameService, private router: Router) { }
 
   ngOnInit(): void {
+    this.playerShips = [
+      { name: 'Carrier', size: 5, hits: 0, sunk: false },
+      { name: 'Battleship', size: 4, hits: 0, sunk: false },
+      { name: 'Cruiser', size: 3, hits: 0, sunk: false },
+      { name: 'Submarine', size: 3, hits: 0, sunk: false },
+      { name: 'Destroyer', size: 2, hits: 0, sunk: false }
+    ];
+
+    this.computerShips = JSON.parse(JSON.stringify(this.playerShips));
     //Récupère la grille
     const state = history.state;
 
@@ -51,6 +63,12 @@ export class GameComponent {
     this.computerHits = this.computerGrid.map(row => row.map(_ => false));
   }
 
+  findShipByPosition(ships: ShipStatus[], row: number, col: number): ShipStatus | undefined {
+    return ships.find(ship =>
+      ship.positions?.some(pos => pos.row === row && pos.col === col)
+    );
+  }
+
   onCellClick(row: number, col: number) {
     if (this.gameOver) return;
     if (!this.playerTurn) return;
@@ -64,9 +82,17 @@ export class GameComponent {
     if (this.computerGrid[row][col] === 1) {
       this.message = 'Hit!';
       this.computerGrid[row][col] = 2; // 2 = touché
+
+      const ship = this.findShipByPosition(this.computerShips, row, col);
+      if (ship) {
+        ship.hits++;
+        if (ship.hits >= ship.size) ship.sunk = true;
+      }
     } else {
       this.message = 'Miss!';
     }
+
+
 
     // Vérifie si tous les navires sont coulés
     if (this.checkWin(this.computerGrid)) {
@@ -107,6 +133,12 @@ computerTurn() {
   if (this.playerGrid[row][col] === 1) {
     this.message = `Computer hits at (${row}, ${col})!`;
     this.playerGrid[row][col] = 2;
+
+    const ship = this.findShipByPosition(this.playerShips, row, col);
+    if (ship) {
+      ship.hits++;
+      if (ship.hits >= ship.size) ship.sunk = true;
+    }
 
     // Ajoute les cases adjacentes à viser si elles ne sont pas déjà touchées
     const directions = [

@@ -4,6 +4,29 @@
     @if (!gameOver) {
     <p>{{ message }}</p>
 
+    <div class="col">
+        <h4>Player Ships</h4>
+        <ul>
+            @for (ship of playerShips; track $index; let i = $index) {
+            <li>
+                {{ ship.name }} - Hits: {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
+            </li>
+            }
+        </ul>
+    </div>
+
+    <div class="col">
+        <h4>Computer Ships</h4>
+        <ul>
+            @for (ship of computerShips; track $index; let i = $index) {
+            <li>
+                {{ ship.name }} - Hits: {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
+            </li>
+            }
+        </ul>
+    </div>
+
+
     <div class="row">
         <div class="col">
             <h4>Player Grid</h4>
