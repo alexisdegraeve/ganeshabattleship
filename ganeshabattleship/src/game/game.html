@@ -1,49 +1,57 @@
-<div class="container text-center my-3">
-    <h2>Ganesha Battleship</h2>
+<div class="water">
 
-    @if (!gameOver) {
-    <p>{{ message }}</p>
+    <div class="logo"></div>
+    <div class="container text-center my-3">
+        @if (!gameOver) {
+        <p>{{ message }}</p>
 
-    <div class="col">
-        <h4>Player Ships</h4>
-        <ul>
-            @for (ship of playerShips; track $index; let i = $index) {
-            <li>
-                {{ ship.name }} - Hits: {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
-            </li>
-            }
-        </ul>
-    </div>
+        <div class="row">
+            <div class="col">
+                <h4>Player Grid</h4>
+                <app-grid [clickable]="false" [ships]="playerShips" [grid]="playerGrid" [hits]="playerHits"></app-grid>
+                <div>
+                    <ul class="info">
+                        @for (ship of playerShips; track $index; let i = $index) {
+                        <li class="item">
+                            <div class="name">
+                                <span>{{ ship.name }}</span>
+                            </div>
+                            <div class="hits">
+                                {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
 
-    <div class="col">
-        <h4>Computer Ships</h4>
-        <ul>
-            @for (ship of computerShips; track $index; let i = $index) {
-            <li>
-                {{ ship.name }} - Hits: {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
-            </li>
-            }
-        </ul>
-    </div>
+            <div class="col ">
+                <h4>Computer Grid</h4>
+                <app-grid [clickable]="!gameOver " [ships]="computerShips" [grid]="computerGrid " [hits]="computerHits " (cellClicked)="onCellClick($event.row, $event.col) "></app-grid>
+                <div>
+                    <ul class="info">
+                        @for (ship of computerShips; track $index; let i = $index) {
+                        <li>
+                            <div class="name">
+                                <span>{{ ship.name }}</span>
+                            </div>
+                            <div class="hits">
+                                {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
+                            </div>
 
-
-    <div class="row">
-        <div class="col">
-            <h4>Player Grid</h4>
-            <app-grid [clickable]="false" [ships]="playerShips" [grid]="playerGrid" [hits]="playerHits"></app-grid>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="col ">
-            <h4>Computer Grid</h4>
-            <app-grid [clickable]="!gameOver " [ships]="computerShips" [grid]="computerGrid " [hits]="computerHits " (cellClicked)="onCellClick($event.row, $event.col) "></app-grid>
+        <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button> } @if (gameOver) {
+        <!-- GAME OVER BLOCK -->
+        <div class="alert alert-info mt-3 ">
+            <h3>{{ message }}</h3>
+            <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button>
         </div>
+        }
     </div>
-
-    <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button> } @if (gameOver) {
-    <!-- GAME OVER BLOCK -->
-    <div class="alert alert-info mt-3">
-        <h3>{{ message }}</h3>
-        <button class="btn btn-primary mt-3" (click)="restartGame()">Restart Game</button>
-    </div>
-    }
 </div>

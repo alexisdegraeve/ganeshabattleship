@@ -1,0 +1,45 @@
+.info {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    .item {
+        margin-right: 0.5rem;
+    }
+    .name {
+        font-size: 1.2rem;
+    }
+    .hits {
+        font-size: 1rem;
+    }
+}
+
+.logo {
+    background-image: url('/img/logo.png');
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 20rem;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+.water {
+    padding: 3rem;
+    background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #1e90ff 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
