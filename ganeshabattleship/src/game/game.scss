@@ -1,7 +1,14 @@
+.full-height {
+    min-height: 100vh; // assure au moins la hauteur de la fenêtre
+    height: 100%; // permet de grandir si contenu plus grand
+    width: 100%;
+}
+
 .info {
     list-style: none;
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
     .item {
         margin-right: 0.5rem;
     }

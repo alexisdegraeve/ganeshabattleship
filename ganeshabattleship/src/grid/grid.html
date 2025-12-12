@@ -1,9 +1,10 @@
-<div class="grid-container d-inline-block">
-    @for (row of grid; track $index; let i = $index) {
-    <div class="d-flex">
+<div class="full-grid">
+    <div class="grid-container">
+        @for (row of grid; track $index; let i = $index) {
+        <div class="d-flex">
 
-        @for (cell of row; track $index;let j = $index) {
-        <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)" [ngClass]="{
+            @for (cell of row; track $index;let j = $index) {
+            <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)" [ngClass]="{
     'ship': cell === 1,
     'ship-start': isShipStart(i,  j),
     'ship-middle': isShipMiddle(i, j),
@@ -12,13 +13,14 @@
     'horizontal': isShipHorizontal(i, j)
   }"></div>
 
-        <!-- <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)"></div> -->
+            <!-- <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)"></div> -->
 
+            }
+
+        </div>
+        } @empty {
+        <li>There are no items.</li>
         }
 
     </div>
-    } @empty {
-    <li>There are no items.</li>
-    }
-
 </div>
