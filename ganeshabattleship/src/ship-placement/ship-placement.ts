@@ -5,10 +5,15 @@ import { Router } from '@angular/router';
 
 type Cell = 0 | 1;
 
-interface Ship {
+export interface Ship {
   name: string;
   size: number;
+  positions?: { row: number; col: number }[]; // cases occupées
+  hits?: number;    // nombre de fois touché
+  sunk?: boolean;   // si le navire est coulé
+  horizontal?: boolean; // orientation
 }
+
 @Component({
   selector: 'app-ship-placement',
   imports: [CommonModule],
@@ -50,12 +55,15 @@ export class ShipPlacementComponent {
       return;
     }
 
+    ship.positions = [];
     // Place ship
     for (let k = 0; k < ship.size; k++) {
       if (this.horizontal) {
         this.grid[row][col + k] = 1;
+        ship.positions.push({ row, col: col + k });
       } else {
         this.grid[row + k][col] = 1;
+        ship.positions.push({ row: row + k, col });
       }
     }
 
@@ -91,9 +99,10 @@ export class ShipPlacementComponent {
       return;
     }
 
+
     // Send the player's grid to the GameComponent
     this.router.navigate(['/game'], {
-      state: { playerGrid: this.grid }
+      state: { playerGrid: this.grid,  playerShips: this.ships }
     });
   }
 

@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Ship } from '../ship-placement/ship-placement';
 
 
 export type Orientation = 'horizontal' | 'vertical';
 export type Cell = 0 | 1 | 2 ; // 0 = empty, 1 = ship ; 2 = hit
 
-export interface Ship {
-  name: string;
-  size: number;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -46,23 +43,48 @@ GRID_SIZE = 10;
     }
   }
 
-  generateComputerGrid(): Cell[][] {
-    const grid = this.createEmptyGrid();
-    for (const ship of this.ships) {
-      let placed = false;
-      let attempts = 0;
-      while (!placed && attempts < 100) {
-        attempts++;
-        const orientation: Orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
-        const row = Math.floor(Math.random() * this.GRID_SIZE);
-        const col = Math.floor(Math.random() * this.GRID_SIZE);
-        if (this.canPlaceShip(grid, row, col, ship, orientation)) {
-          this.placeShip(grid, row, col, ship, orientation);
-          placed = true;
+
+generateComputerGrid(): { grid: Cell[][], ships: Ship[] }  {
+  const grid = this.createEmptyGrid();
+  const ships: Ship[] = this.ships.map(s => ({ ...s, positions: [] }));
+
+  for (const ship of this.ships) {
+    let placed = false;
+    let attempts = 0;
+
+    // Définir une orientation aléatoire pour chaque navire
+    const orientation: 'horizontal' | 'vertical' = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+    ship.horizontal = orientation === 'horizontal'; // pour le suivi des positions
+
+    while (!placed && attempts < 100) {
+      attempts++;
+      const row = Math.floor(Math.random() * this.GRID_SIZE);
+      const col = Math.floor(Math.random() * this.GRID_SIZE);
+
+      if (this.canPlaceShip(grid, row, col, ship, orientation)) {
+        // Placer le navire dans la grille
+        this.placeShip(grid, row, col, ship, orientation);
+
+        // Stocker les positions exactes du navire
+        ship.positions = [];
+        for (let k = 0; k < ship.size; k++) {
+          if (orientation === 'horizontal') {
+            ship.positions.push({ row, col: col + k });
+          } else {
+            ship.positions.push({ row: row + k, col });
+          }
         }
+
+        placed = true;
       }
-      if (!placed) return this.generateComputerGrid();
     }
-    return grid;
+
+    // Si placement impossible après 100 essais, recommencer tout
+    if (!placed) return this.generateComputerGrid();
   }
+
+  return {grid, ships};
+}
+
+
 }

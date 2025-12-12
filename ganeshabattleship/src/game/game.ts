@@ -3,6 +3,7 @@ import { GridComponent } from "../grid/grid";
 import { Cell, GameService } from '../services/game';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Ship } from '../ship-placement/ship-placement';
 
 interface ShipStatus {
   name: string;
@@ -56,7 +57,37 @@ export class GameComponent {
 
     // Génère les grilles
     this.playerGrid = state.playerGrid;
-    this.computerGrid = this.gameService.generateComputerGrid();
+      this.playerShips = state.playerShips.map((ship: Ship) => ({
+    ...ship,
+    hits: 0,
+    sunk: false
+  }));
+      // this.playerShips.forEach(ship => {
+      //   ship.positions = [];
+      //   for (let row = 0; row < this.playerGrid.length; row++) {
+      //     for (let col = 0; col < this.playerGrid[row].length; col++) {
+      //       // Si la cellule correspond à ce navire (1 = navire)
+      //       if (this.playerGrid[row][col] === 1) {
+      //         // Tu peux associer par ordre : le premier navire trouvé = Carrier, etc.
+      //         if (ship.positions!.length < ship.size) {
+      //           ship.positions!.push({ row, col });
+      //         }
+      //       }
+      //     }
+      //   }
+      // });
+
+
+    const computerSetup = this.gameService.generateComputerGrid();
+    this.computerGrid = computerSetup.grid;
+    this.computerShips = computerSetup.ships.map(ship => ({
+      name: ship.name,
+      size: ship.size,
+      hits: 0,
+      sunk: false,
+      positions: ship.positions
+    }));
+
 
     // Initialiser les grilles de hits/misses
     this.playerHits = this.playerGrid.map(row => row.map(_ => false));
