@@ -1,1 +1,8 @@
-<p>grid works!</p>
+<div class="grid-container d-inline-block">
+    @for (row of grid; track row) {
+    <li>{{ row }}</li>
+    } @empty {
+    <li>There are no items.</li>
+    }
+
+</div>

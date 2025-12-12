@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Cell } from '../services/game';
 
 @Component({
   selector: 'app-grid',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './grid.html',
   styleUrl: './grid.scss',
 })
-export class Grid {
+export class GridComponent {
+  @Input() grid: Cell[][] = [];
+  @Output() cellClicked = new EventEmitter<{ row: number, col: number }>();
+
+  onCellClick(row: number, col: number) {
+    this.cellClicked.emit({ row, col });
+  }
 
 }
