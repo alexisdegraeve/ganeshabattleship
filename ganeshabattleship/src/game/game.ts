@@ -23,6 +23,8 @@ export class GameComponent {
   computerGrid: Cell[][] = [];
   playerHits: boolean[][] = [];    // grille pour marquer hits/misses joueur
   computerHits: boolean[][] = [];  // grille pour marquer hits/misses ordinateur
+  computerHitsQueue: { row: number, col: number }[] = []; // cases à viser
+  lastHit: { row: number, col: number } | null = null;
 
   playerTurn = true;
   gameOver = false;
@@ -80,42 +82,61 @@ export class GameComponent {
     //setTimeout(() => { this.computerTurn(); }, 500);
   }
 
-  computerTurn() {
-    if (this.gameOver) return;
 
-    let row: number;
-    let col: number;
+computerTurn() {
+  if (this.gameOver) return;
 
-    // Choisir une case non encore touchée
+  let row: number;
+  let col: number;
+
+  // Si on a une case à viser (hits voisins), on prend la première
+  if (this.computerHitsQueue.length > 0) {
+    const next = this.computerHitsQueue.shift()!;
+    row = next.row;
+    col = next.col;
+  } else {
+    // Tir aléatoire
     do {
       row = Math.floor(Math.random() * this.playerGrid.length);
       col = Math.floor(Math.random() * this.playerGrid[0].length);
     } while (this.playerHits[row][col]);
-
-    this.playerHits[row][col] = true;
-
-    if (this.playerGrid[row][col] === 1) {
-      this.message = `Computer hits at (${row}, ${col})!`;
-      this.playerGrid[row][col] = 2;
-    } else {
-      this.message = `Computer misses at (${row}, ${col}).`;
-    }
-
-      // FORCE Angular à détecter le changement
-      this.playerHits = this.playerHits.map(row => [...row]);
-      this.playerGrid = this.playerGrid.map(row => [...row]);
-
-    if (this.checkWin(this.playerGrid)) {
-      this.message = 'Computer wins!';
-      this.gameOver = true;
-      return;
-    }
-
-
-    this.playerTurn = true;
-    // setTimeout(() => { this.playerTurn = true; }, 500);
   }
 
+  this.playerHits[row][col] = true;
+
+  if (this.playerGrid[row][col] === 1) {
+    this.message = `Computer hits at (${row}, ${col})!`;
+    this.playerGrid[row][col] = 2;
+
+    // Ajoute les cases adjacentes à viser si elles ne sont pas déjà touchées
+    const directions = [
+      { r: row-1, c: col }, { r: row+1, c: col },
+      { r: row, c: col-1 }, { r: row, c: col+1 }
+    ];
+
+    directions.forEach(d => {
+      if (d.r >= 0 && d.r < this.playerGrid.length &&
+          d.c >= 0 && d.c < this.playerGrid[0].length &&
+          !this.playerHits[d.r][d.c]) {
+        this.computerHitsQueue.push({ row: d.r, col: d.c });
+      }
+    });
+
+  } else {
+    this.message = `Computer misses at (${row}, ${col}).`;
+  }
+
+  this.playerGrid = this.playerGrid.map(r => [...r]);
+  this.playerHits = this.playerHits.map(r => [...r]);
+
+  if (this.checkWin(this.playerGrid)) {
+    this.message = 'Computer wins!';
+    this.gameOver = true;
+    return;
+  }
+
+  this.playerTurn = true;
+}
   checkWin(grid: Cell[][]): boolean {
     return !grid.some(row => row.some(cell => cell === 1));
   }
