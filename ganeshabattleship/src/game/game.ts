@@ -74,9 +74,10 @@ export class GameComponent {
     }
 
     this.playerTurn = false;
+    this.computerTurn();
 
     // Tour de l'ordinateur après un petit délai
-    setTimeout(() => { this.computerTurn(); }, 500);
+    //setTimeout(() => { this.computerTurn(); }, 500);
   }
 
   computerTurn() {
@@ -111,7 +112,8 @@ export class GameComponent {
     }
 
 
-    setTimeout(() => { this.playerTurn = true; }, 500);
+    this.playerTurn = true;
+    // setTimeout(() => { this.playerTurn = true; }, 500);
   }
 
   checkWin(grid: Cell[][]): boolean {
