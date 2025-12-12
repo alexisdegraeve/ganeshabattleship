@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,7 +11,7 @@ interface Ship {
 }
 @Component({
   selector: 'app-ship-placement',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './ship-placement.html',
   styleUrl: './ship-placement.scss',
 })

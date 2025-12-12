@@ -2,10 +2,18 @@ import { Component } from '@angular/core';
 import { GridComponent } from "../grid/grid";
 import { Cell, GameService } from '../services/game';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+interface ShipStatus {
+  name: string;
+  size: number;
+  hits: number;
+  sunk: boolean;
+}
 
 @Component({
   selector: 'app-game',
-  imports: [GridComponent],
+  imports: [GridComponent, CommonModule],
   templateUrl: './game.html',
   styleUrl: './game.scss',
 })
@@ -68,7 +76,7 @@ export class GameComponent {
     this.playerTurn = false;
 
     // Tour de l'ordinateur après un petit délai
-    setTimeout(() => this.computerTurn(), 500);
+    setTimeout(() => { this.computerTurn(); }, 500);
   }
 
   computerTurn() {
@@ -91,6 +99,10 @@ export class GameComponent {
     } else {
       this.message = `Computer misses at (${row}, ${col}).`;
     }
+
+      // FORCE Angular à détecter le changement
+      this.playerHits = this.playerHits.map(row => [...row]);
+      this.playerGrid = this.playerGrid.map(row => [...row]);
 
     if (this.checkWin(this.playerGrid)) {
       this.message = 'Computer wins!';

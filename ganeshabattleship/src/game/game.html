@@ -1,20 +1,26 @@
-<p>game works!</p>
-<hr>
 <div class="container text-center my-3">
     <h2>Ganesha Battleship</h2>
+
+    @if (!gameOver) {
     <p>{{ message }}</p>
 
     <div class="row">
         <div class="col">
             <h4>Player Grid</h4>
-            <app-grid [grid]="playerGrid" [hits]="playerHits" (cellClicked)="onCellClick($event.row, $event.col)"></app-grid>
+            <app-grid [clickable]="false" [grid]="playerGrid" [hits]="playerHits"></app-grid>
         </div>
 
-        <div class="col">
+        <div class="col ">
             <h4>Computer Grid</h4>
-            <app-grid [grid]="computerGrid" [hits]="computerHits" (cellClicked)="onCellClick($event.row, $event.col)"></app-grid>
+            <app-grid [clickable]="playerTurn && !gameOver " [grid]="computerGrid " [hits]="computerHits " (cellClicked)="onCellClick($event.row, $event.col) "></app-grid>
         </div>
     </div>
 
-    <button class="btn btn-primary mt-3" (click)="restartGame()">Restart Game</button>
+    <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button> } @if (gameOver) {
+    <!-- GAME OVER BLOCK -->
+    <div class="alert alert-info mt-3">
+        <h3>{{ message }}</h3>
+        <button class="btn btn-primary mt-3" (click)="restartGame()">Restart Game</button>
+    </div>
+    }
 </div>
