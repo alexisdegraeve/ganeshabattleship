@@ -3,15 +3,8 @@ import { GridComponent } from "../grid/grid";
 import { Cell, GameService } from '../services/game';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Ship } from '../ship-placement/ship-placement';
+import { Ship, ShipStatus } from '../models/batteship';
 
-interface ShipStatus {
-  name: string;
-  size: number;
-  hits: number;
-  sunk: boolean;
-  positions?: { row: number, col: number }[];
-}
 
 @Component({
   selector: 'app-game',
@@ -94,11 +87,7 @@ export class GameComponent {
     this.computerHits = this.computerGrid.map(row => row.map(_ => false));
   }
 
-  findShipByPosition(ships: ShipStatus[], row: number, col: number): ShipStatus | undefined {
-    return ships.find(ship =>
-      ship.positions?.some(pos => pos.row === row && pos.col === col)
-    );
-  }
+
 
   onCellClick(row: number, col: number) {
     if (this.gameOver) return;
@@ -114,7 +103,7 @@ export class GameComponent {
       this.message = 'Hit!';
       this.computerGrid[row][col] = 2; // 2 = touché
 
-      const ship = this.findShipByPosition(this.computerShips, row, col);
+      const ship = this.gameService.findShipByPosition(this.computerShips, row, col);
       if (ship) {
         ship.hits++;
         if (ship.hits >= ship.size) ship.sunk = true;
@@ -165,7 +154,7 @@ computerTurn() {
     this.message = `Computer hits at (${row}, ${col})!`;
     this.playerGrid[row][col] = 2;
 
-    const ship = this.findShipByPosition(this.playerShips, row, col);
+    const ship = this.gameService.findShipByPosition(this.playerShips, row, col);
     if (ship) {
       ship.hits++;
       if (ship.hits >= ship.size) ship.sunk = true;

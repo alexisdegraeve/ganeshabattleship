@@ -12,3 +12,33 @@
     pointer-events: none;
     opacity: 0.5;
 }
+
+.ship.ship-start.horizontal {
+    background-color: yellow;
+    // background-image: url('/assets/ships/ship-start-h.png');
+}
+
+.ship-middle.horizontal {
+    background-color: blue;
+    // background-image: url('/assets/ships/ship-middle-h.png');
+}
+
+.ship.ship-end.horizontal {
+    background-color: magenta;
+    // background-image: url('/assets/ships/ship-end-h.png');
+}
+
+.ship.ship-start.vertical {
+    background-color: orange;
+    // background-image: url('/assets/ships/ship-start-v.png');
+}
+
+.ship.ship-middle.vertical {
+    background-color: green;
+    // background-image: url('/assets/ships/ship-middle-v.png');
+}
+
+.ship.ship-end.vertical {
+    background-color: black;
+    // background-image: url('/assets/ships/ship-end-v.png');
+}

@@ -3,7 +3,16 @@
     <div class="d-flex">
 
         @for (cell of row; track $index;let j = $index) {
-        <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)"></div>
+        <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)" [ngClass]="{
+    'ship': cell === 1,
+    'ship-start': isShipStart(i,  j),
+    'ship-middle': isShipMiddle(i, j),
+    'ship-end': isShipEnd(i, j),
+    'vertical': isShipVertical(i, j),
+    'horizontal': isShipHorizontal(i, j)
+  }"></div>
+
+        <!-- <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)"></div> -->
 
         }
 

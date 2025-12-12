@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ship } from '../ship-placement/ship-placement';
+import { Ship, ShipStatus } from '../models/batteship';
 
 
 export type Orientation = 'horizontal' | 'vertical';
@@ -19,6 +19,12 @@ GRID_SIZE = 10;
     { name: 'Submarine', size: 3 },
     { name: 'Destroyer', size: 2 },
   ];
+
+  findShipByPosition(ships: ShipStatus[], row: number, col: number): ShipStatus | undefined {
+    return ships.find(ship =>
+      ship.positions?.some(pos => pos.row === row && pos.col === col)
+    );
+  }
 
   createEmptyGrid(): Cell[][] {
     return Array.from({ length: this.GRID_SIZE }, () => Array(this.GRID_SIZE).fill(0));

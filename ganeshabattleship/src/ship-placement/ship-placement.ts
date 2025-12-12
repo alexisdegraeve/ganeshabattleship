@@ -1,18 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ship } from '../models/batteship';
 
 
 type Cell = 0 | 1;
 
-export interface Ship {
-  name: string;
-  size: number;
-  positions?: { row: number; col: number }[]; // cases occupées
-  hits?: number;    // nombre de fois touché
-  sunk?: boolean;   // si le navire est coulé
-  horizontal?: boolean; // orientation
-}
 
 @Component({
   selector: 'app-ship-placement',
