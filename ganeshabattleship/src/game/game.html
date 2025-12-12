@@ -1,5 +1,20 @@
 <p>game works!</p>
-<app-grid [grid]="playerGrid"></app-grid>
 <hr>
+<div class="container text-center my-3">
+    <h2>Ganesha Battleship</h2>
+    <p>{{ message }}</p>
 
-<app-grid [grid]="computerGrid"></app-grid>
+    <div class="row">
+        <div class="col">
+            <h4>Player Grid</h4>
+            <app-grid [grid]="playerGrid" [hits]="playerHits" (cellClicked)="onCellClick($event.row, $event.col)"></app-grid>
+        </div>
+
+        <div class="col">
+            <h4>Computer Grid</h4>
+            <app-grid [grid]="computerGrid" [hits]="computerHits" (cellClicked)="onCellClick($event.row, $event.col)"></app-grid>
+        </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" (click)="restartGame()">Restart Game</button>
+</div>

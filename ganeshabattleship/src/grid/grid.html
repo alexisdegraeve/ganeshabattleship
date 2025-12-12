@@ -1,5 +1,13 @@
 <div class="grid-container d-inline-block">
-    @for (row of grid; track row) {
+    @for (row of grid; track row; let i = $index) {
+    <div class="d-flex">
+
+        @for (cell of row; track cell;let j = $index) {
+        <div class="cell border border-dark" [class.bg-primary]="grid[i][j] === 1 && hits[i][j]" [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="onCellClick(i, j)"></div>
+
+        }
+
+    </div>
     <li>{{ row }}</li>
     } @empty {
     <li>There are no items.</li>

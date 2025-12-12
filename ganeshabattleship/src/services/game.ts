@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 export type Orientation = 'horizontal' | 'vertical';
-export type Cell = 0 | 1; // 0 = empty, 1 = ship
+export type Cell = 0 | 1 | 2 ; // 0 = empty, 1 = ship ; 2 = hit
 
 export interface Ship {
   name: string;

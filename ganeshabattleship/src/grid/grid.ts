@@ -9,6 +9,7 @@ import { Cell } from '../services/game';
 })
 export class GridComponent {
   @Input() grid: Cell[][] = [];
+   @Input() hits: boolean[][] = [];
   @Output() cellClicked = new EventEmitter<{ row: number, col: number }>();
 
   onCellClick(row: number, col: number) {
