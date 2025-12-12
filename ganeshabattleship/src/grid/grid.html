@@ -1,8 +1,8 @@
 <div class="grid-container d-inline-block">
-    @for (row of grid; track row; let i = $index) {
+    @for (row of grid; track $index; let i = $index) {
     <div class="d-flex">
 
-        @for (cell of row; track cell;let j = $index) {
+        @for (cell of row; track $index;let j = $index) {
         <div class="cell border border-dark" [class.disabled]="!clickable" [class.bg-primary]="grid[i][j] === 1 " [class.bg-danger]="grid[i][j] === 2" [class.bg-light]="grid[i][j] === 0 || (grid[i][j] === 1 && !hits[i][j])" (click)="handleClick(i, j)"></div>
 
         }
