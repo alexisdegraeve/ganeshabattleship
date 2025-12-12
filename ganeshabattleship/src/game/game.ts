@@ -45,7 +45,7 @@ export class GameComponent {
       { name: 'Destroyer', size: 2, hits: 0, sunk: false }
     ];
 
-    this.computerShips = JSON.parse(JSON.stringify(this.playerShips));
+    //this.computerShips = JSON.parse(JSON.stringify(this.playerShips));
     //Récupère la grille
     const state = history.state;
 

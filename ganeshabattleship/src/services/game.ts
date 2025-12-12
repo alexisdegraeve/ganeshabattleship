@@ -44,33 +44,40 @@ GRID_SIZE = 10;
   }
 
 
-generateComputerGrid(): { grid: Cell[][], ships: Ship[] }  {
+generateComputerGrid(): { grid: Cell[][], ships: Ship[] } {
   const grid = this.createEmptyGrid();
-  const ships: Ship[] = this.ships.map(s => ({ ...s, positions: [] }));
 
-  for (const ship of this.ships) {
+  // IMPORTANT : créer une copie indépendante des navires
+  const ships: Ship[] = this.ships.map(s => ({
+    name: s.name,
+    size: s.size,
+    positions: [],
+    horizontal: true
+  }));
+
+  for (const ship of ships) {
     let placed = false;
     let attempts = 0;
 
-    // Définir une orientation aléatoire pour chaque navire
-    const orientation: 'horizontal' | 'vertical' = Math.random() < 0.5 ? 'horizontal' : 'vertical';
-    ship.horizontal = orientation === 'horizontal'; // pour le suivi des positions
-
     while (!placed && attempts < 100) {
       attempts++;
+
+      const orientation: Orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+      ship.horizontal = orientation === 'horizontal';
+
       const row = Math.floor(Math.random() * this.GRID_SIZE);
       const col = Math.floor(Math.random() * this.GRID_SIZE);
 
       if (this.canPlaceShip(grid, row, col, ship, orientation)) {
-        // Placer le navire dans la grille
-        this.placeShip(grid, row, col, ship, orientation);
 
-        // Stocker les positions exactes du navire
-        ship.positions = [];
+        ship.positions = []; // reset safe
+
         for (let k = 0; k < ship.size; k++) {
           if (orientation === 'horizontal') {
+            grid[row][col + k] = 1;
             ship.positions.push({ row, col: col + k });
           } else {
+            grid[row + k][col] = 1;
             ship.positions.push({ row: row + k, col });
           }
         }
@@ -79,11 +86,13 @@ generateComputerGrid(): { grid: Cell[][], ships: Ship[] }  {
       }
     }
 
-    // Si placement impossible après 100 essais, recommencer tout
-    if (!placed) return this.generateComputerGrid();
+    if (!placed) {
+      console.warn("Retry generation (ship could not be placed)");
+      return this.generateComputerGrid();
+    }
   }
 
-  return {grid, ships};
+  return { grid, ships };
 }
 
 
