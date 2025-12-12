@@ -110,7 +110,8 @@ export class GameComponent {
       return;
     }
 
-    this.playerTurn = true;
+
+    setTimeout(() => { this.playerTurn = true; }, 500);
   }
 
   checkWin(grid: Cell[][]): boolean {

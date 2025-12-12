@@ -12,7 +12,7 @@
 
         <div class="col ">
             <h4>Computer Grid</h4>
-            <app-grid [clickable]="playerTurn && !gameOver " [grid]="computerGrid " [hits]="computerHits " (cellClicked)="onCellClick($event.row, $event.col) "></app-grid>
+            <app-grid [clickable]="!gameOver " [grid]="computerGrid " [hits]="computerHits " (cellClicked)="onCellClick($event.row, $event.col) "></app-grid>
         </div>
     </div>
 
