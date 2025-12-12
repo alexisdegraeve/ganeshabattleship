@@ -1,1 +1,32 @@
 <p>ship-placement works!</p>
+<div class="container mt-4 text-center">
+
+    <h2>Place Your Ships</h2>
+
+    <p>
+        @if (currentShipIndex
+        < ships.length) { <strong>Current ship:</strong> {{ ships[currentShipIndex].name }} } @else {
+            <strong>All ships placed!</strong> }
+    </p>
+
+    <button class="btn btn-secondary mb-3" (click)="toggleOrientation()">
+    Toggle Orientation ({{ horizontal ? 'Horizontal' : 'Vertical' }})
+  </button>
+
+    <div class="grid-container d-inline-block">
+        @for (row of grid; track row; let i = $index) {
+        <div class="d-flex">
+            @for (cell of row; track cell; let j = $index) {
+            <div class="cell border border-dark" [class.bg-primary]="cell === 1" [class.bg-light]="cell === 0" (click)="onCellClick(i, j)"></div>
+            }
+        </div>
+        }
+    </div>
+
+    <p class="mt-3 text-danger">{{ message }}</p>
+
+    <div class="mt-3">
+        <button class="btn btn-success" (click)="startGame()">Start Game</button>
+        <button class="btn btn-outline-danger ms-2" (click)="resetGrid()">Reset</button>
+    </div>
+</div>

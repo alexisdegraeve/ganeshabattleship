@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GridComponent } from "../grid/grid";
 import { Cell, GameService } from '../services/game';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -19,11 +20,20 @@ export class GameComponent {
   gameOver = false;
   message = '';
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private router: Router) { }
 
   ngOnInit(): void {
+    //Récupère la grille
+    const state = history.state;
+
+    if (!state.playerGrid) {
+      // Si le joueur n'a pas placé ses navires → retour obligatoire
+      this.router.navigate(['/ship-placement']);
+      return;
+    }
+
     // Génère les grilles
-    this.playerGrid = this.gameService.generateComputerGrid(); // Pour test, peut être vide si tu veux placement manuel
+    this.playerGrid = state.playerGrid;
     this.computerGrid = this.gameService.generateComputerGrid();
 
     // Initialiser les grilles de hits/misses
@@ -96,9 +106,10 @@ export class GameComponent {
   }
 
   restartGame() {
-    this.ngOnInit();
-    this.playerTurn = true;
-    this.gameOver = false;
-    this.message = '';
+    //this.ngOnInit();
+     this.router.navigate(['/ship-placement']);
+    // this.playerTurn = true;
+    // this.gameOver = false;
+    // this.message = '';
   }
 }
