@@ -50,3 +50,10 @@
     border-right: unset;
     border-left: unset;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
