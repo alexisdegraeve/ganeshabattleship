@@ -1,11 +1,17 @@
-.logo {
-    background-image: url('/img/logo.png');
-    height: 5rem;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 20rem;
+header {
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
+}
+
+.logo {
+    background-image: url('/img/logo.png');
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 30rem;
+    display: flex;
     margin-top: 2rem;
 }
