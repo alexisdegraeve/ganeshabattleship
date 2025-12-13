@@ -7,9 +7,24 @@
             {{ ships[currentShipIndex].name }} } @else { <span>All ships placed!</span> }
     </p>
 
-    <button class="btn btn-secondary mb-3" (click)="toggleOrientation()">
-    <i class="bi" [class.bi-distribute-horizontal]="!horizontal" [class.bi-distribute-vertical]="horizontal"></i>  Toggle Orientation ({{ horizontal ? 'Horizontal' : 'Vertical' }})
-  </button>
+    <div class="btn-group mb-3" role="group" aria-label="Ship orientation">
+
+        <!-- Horizontal -->
+        <input type="radio" class="btn-check" name="orientation" id="orientation-horizontal" [checked]="horizontal" (change)="horizontal = true">
+        <label class="btn btn-outline-secondary" for="orientation-horizontal">
+    <i class="bi bi-distribute-horizontal me-1"></i>
+    Horizontal
+  </label>
+
+        <!-- Vertical -->
+        <input type="radio" class="btn-check" name="orientation" id="orientation-vertical" [checked]="!horizontal" (change)="horizontal = false">
+        <label class="btn btn-outline-secondary" for="orientation-vertical">
+    <i class="bi bi-distribute-vertical me-1"></i>
+    Vertical
+  </label>
+
+    </div>
+
 
     <div class="grid-container d-inline-block">
         @for (row of grid; track $index; let i = $index) {

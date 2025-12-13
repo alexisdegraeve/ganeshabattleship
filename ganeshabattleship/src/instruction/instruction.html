@@ -1,1 +1,47 @@
-<p>instruction works!</p>
+<section class="game-instructions">
+    <h1>How to Play</h1>
+
+    <p>
+        Welcome! Your mission is to locate and sink all enemy ships before they destroy yours.
+    </p>
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Sink all of the opponent’s ships by correctly guessing their positions on the grid.
+    </p>
+
+    <h2>🛳️ Ships</h2>
+    <ul>
+        <li>Aircraft Carrier (5 cells)</li>
+        <li>Battleship (4 cells)</li>
+        <li>Cruiser (3 cells)</li>
+        <li>Submarine (3 cells)</li>
+        <li>Destroyer (2 cells)</li>
+    </ul>
+
+    <h2>🕹️ Gameplay</h2>
+    <ol>
+        <li>Place your ships on your grid.</li>
+        <li>The computer will secretly place its ships.</li>
+        <li>Take turns firing at the enemy grid by clicking a cell.</li>
+        <li>A hit is marked when a ship occupies the targeted cell.</li>
+        <li>A miss is marked when the cell is empty.</li>
+    </ol>
+
+    <h2>💥 Hits & Sinking Ships</h2>
+    <p>
+        Each successful hit damages a ship. When all cells of a ship are hit, the ship is sunk.
+    </p>
+
+    <h2>🏆 Winning & Losing</h2>
+    <ul>
+        <li><strong>You win</strong> when all enemy ships are sunk.</li>
+        <li><strong>You lose</strong> when all your ships are sunk.</li>
+    </ul>
+
+    <p class="good-luck">
+        Good luck, Commander! 🚢
+    </p>
+
+    <button class="btn btn-primary mt-3 " [routerLink]="'/ship-placement'">New</button>
+</section>
