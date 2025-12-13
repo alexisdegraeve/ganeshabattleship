@@ -31,7 +31,7 @@ export class GameComponent {
 
   ngOnInit(): void {
     this.playerShips = [
-      { name: 'Carrier', size: 5, hits: 0, sunk: false },
+      { name: 'Aircraft Carrier', size: 5, hits: 0, sunk: false },
       { name: 'Battleship', size: 4, hits: 0, sunk: false },
       { name: 'Cruiser', size: 3, hits: 0, sunk: false },
       { name: 'Submarine', size: 3, hits: 0, sunk: false },

@@ -21,11 +21,11 @@ export class ShipPlacementComponent {
   );
 
   ships: Ship[] = [
-    { name: 'Carrier (5)', size: 5 },
-    { name: 'Battleship (4)', size: 4 },
-    { name: 'Cruiser (3)', size: 3 },
-    { name: 'Submarine (3)', size: 3 },
-    { name: 'Destroyer (2)', size: 2 }
+    { name: 'Aircraft Carrier', size: 5 },
+    { name: 'Battleship', size: 4 },
+    { name: 'Cruiser', size: 3 },
+    { name: 'Submarine', size: 3 },
+    { name: 'Destroyer', size: 2 }
   ];
 
   currentShipIndex = 0;

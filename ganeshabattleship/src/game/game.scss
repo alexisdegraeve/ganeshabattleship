@@ -1,15 +1,43 @@
+.more-info {
+    background-color: rgba(255, 255, 255, 0.4);
+    height: 3rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    p {
+        margin: 0;
+    }
+}
+
+.container-grid {
+    h4 {
+        display: flex;
+        text-align: center;
+        i {
+            margin-right: 0.5rem;
+        }
+    }
+}
+
 .info {
     list-style: none;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    flex-grow: 1;
     .item {
         margin-right: 0.5rem;
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        width: 100%;
     }
     .name {
-        font-size: 1.2rem;
+        font-size: 0.95rem;
     }
     .hits {
-        font-size: 1rem;
+        font-size: 0.85rem;
+        margin-left: auto;
     }
 }
