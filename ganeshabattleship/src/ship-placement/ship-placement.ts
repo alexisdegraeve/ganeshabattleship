@@ -106,6 +106,11 @@ export class ShipPlacementComponent {
     );
     this.currentShipIndex = 0;
     this.message = '';
+
+  this.ships = this.ships.map(ship => ({
+    ...ship,
+    positions: [] // reset positions
+  }));
   }
 
   findShipByPosition(row: number, col: number): Ship | undefined {
