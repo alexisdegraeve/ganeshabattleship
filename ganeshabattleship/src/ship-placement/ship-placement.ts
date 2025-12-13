@@ -23,9 +23,9 @@ export class ShipPlacementComponent {
   ships: Ship[] = [
     { name: 'Aircraft Carrier', size: 5 },
     { name: 'Battleship', size: 4 },
-    { name: 'Cruiser', size: 3 },
-    { name: 'Submarine', size: 3 },
-    { name: 'Destroyer', size: 2 }
+    { name: 'Cruiser (3)', size: 3 },
+    { name: 'Submarine (3)', size: 3 },
+    { name: 'Destroyer (2)', size: 2 }
   ];
 
   currentShipIndex = 0;
@@ -107,4 +107,57 @@ export class ShipPlacementComponent {
     this.currentShipIndex = 0;
     this.message = '';
   }
+
+  findShipByPosition(row: number, col: number): Ship | undefined {
+  return this.ships.find(ship =>
+    ship.positions?.some(p => p.row === row && p.col === col)
+  );
+
+
+}
+
+isShipStart(row: number, col: number): boolean {
+  const ship = this.findShipByPosition(row, col);
+  if (!ship || !ship.positions) return false;
+  return ship.positions[0].row === row && ship.positions[0].col === col;
+}
+
+isShipMiddle(row: number, col: number): boolean {
+  const ship = this.findShipByPosition(row, col);
+  if (!ship || !ship.positions || ship.positions.length < 3) return false;
+
+  return ship.positions.some(
+    (p, index) =>
+      index > 0 &&
+      index < ship.positions!.length - 1 &&
+      p.row === row &&
+      p.col === col
+  );
+}
+
+
+isShipEnd(row: number, col: number): boolean {
+  const ship = this.findShipByPosition(row, col);
+  if (!ship || !ship.positions) return false;
+  const last = ship.positions[ship.positions.length - 1];
+  return last.row === row && last.col === col;
+}
+
+
+  isShipHorizontal(row: number, col: number): boolean {
+    const ship = this.findShipByPosition(row, col);
+    if (!ship || !ship.positions || ship.positions.length < 2) return false;
+
+    return ship.positions[0].row === ship.positions[1].row;
+  }
+
+  isShipVertical(row: number, col: number): boolean {
+    const ship = this.findShipByPosition(row, col);
+    if (!ship || !ship.positions || ship.positions.length < 2) return false;
+
+    return ship.positions[0].col === ship.positions[1].col;
+  }
+
+
+
 }

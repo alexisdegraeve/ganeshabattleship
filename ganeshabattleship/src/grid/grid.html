@@ -4,7 +4,7 @@
         <div class="d-flex">
 
             @for (cell of row; track $index;let j = $index) {
-            <div class="cell" [class.disabled]="!clickable" (click)="handleClick(i, j)">
+            <div class="cell" [class.disabled]="!clickable" (click)="handleClick(i, j)" [class.horizontal]="isShipHorizontal(i, j)">
 
                 <div class="inside-cell" [ngClass]="{
     'ship': cell === 1,

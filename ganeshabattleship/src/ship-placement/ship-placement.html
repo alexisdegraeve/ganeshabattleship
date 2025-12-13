@@ -1,22 +1,29 @@
 <div class="container mt-4 text-center">
-
     <h2>Place Your Ships</h2>
 
     <p>
         @if (currentShipIndex
-        < ships.length) { <strong>Current ship:</strong> {{ ships[currentShipIndex].name }} } @else {
-            <strong>All ships placed!</strong> }
+        < ships.length) { <span>Current ship:</span>
+            {{ ships[currentShipIndex].name }} } @else { <span>All ships placed!</span> }
     </p>
 
     <button class="btn btn-secondary mb-3" (click)="toggleOrientation()">
-    Toggle Orientation ({{ horizontal ? 'Horizontal' : 'Vertical' }})
+    <i class="bi" [class.bi-distribute-horizontal]="!horizontal" [class.bi-distribute-vertical]="horizontal"></i>  Toggle Orientation ({{ horizontal ? 'Horizontal' : 'Vertical' }})
   </button>
 
     <div class="grid-container d-inline-block">
         @for (row of grid; track $index; let i = $index) {
         <div class="d-flex">
             @for (cell of row; track $index; let j = $index) {
-            <div class="cell border border-dark" [class.bg-primary]="cell === 1" [class.bg-light]="cell === 0" (click)="onCellClick(i, j)"></div>
+            <div class="cell" (click)="onCellClick(i, j)" [class.horizontal]="isShipHorizontal(i, j)">
+                <div class="inside-cell" [ngClass]="{
+          'ship-start': isShipStart(i, j),
+        'ship-middle': isShipMiddle(i, j),
+        'ship-end': isShipEnd(i, j),
+        'horizontal': isShipHorizontal(i, j),
+        'vertical': isShipVertical(i, j)
+          }"></div>
+            </div>
             }
         </div>
         }

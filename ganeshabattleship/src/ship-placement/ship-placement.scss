@@ -1,4 +1,52 @@
 .cell {
-    height: 3rem;
-    width: 3rem;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inside-cell {
+    width: 30px;
+    height: 30px;
+}
+
+.ship-start.horizontal {
+    border-radius: 50% 0 0 50% / 50% 50%;
+    border: 1px solid red !important;
+    border-right: 1px solid transparent !important;
+    background: red;
+}
+
+.ship-end.horizontal {
+    border-radius: 0 50% 50% 0 / 50% 50%;
+    border: 1px solid red !important;
+    border-right: 1px solid transparent !important;
+    background: red;
+}
+
+.ship-start.vertical {
+    border-radius: 50% 50% 0 0 / 50% 50%;
+    border: 1px solid red !important;
+    border-right: 1px solid transparent !important;
+    background: red;
+}
+
+.ship-end.vertical {
+    background-color: black;
+    border-radius: 0 0 50% 50% / 50% 50%;
+    border: 1px solid red !important;
+    border-right: 1px solid transparent !important;
+    background: red;
+}
+
+.ship-middle {
+    background: red;
+}
+
+.cell.horizontal {
+    border-right: unset;
+    border-left: unset;
 }
