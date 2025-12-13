@@ -2,7 +2,7 @@
     @if (!gameOver) {
 
     <div class="more-info">
-        <p>{{ message }}</p>
+        <div [innerHTML]="message"></div>
     </div>
 
 
@@ -59,7 +59,7 @@
     <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button> } @if (gameOver) {
     <!-- GAME OVER BLOCK -->
     <div class="alert alert-info mt-3 ">
-        <h3>{{ message }}</h3>
+        <h3 [innerHTML]="message"></h3>
         <button class="btn btn-primary mt-3 " (click)="restartGame() ">Restart Game</button>
     </div>
     }

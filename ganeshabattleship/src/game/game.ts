@@ -116,7 +116,7 @@ export class GameComponent {
 
     // Vérifie si tous les navires sont coulés
     if (this.checkWin(this.computerGrid)) {
-      this.message = 'Player wins!';
+      this.message = '<i class="bi bi-trophy-fill me-2"></i> You win!';
       this.gameOver = true;
       return;
     }
@@ -182,7 +182,7 @@ computerTurn() {
   this.playerHits = this.playerHits.map(r => [...r]);
 
   if (this.checkWin(this.playerGrid)) {
-    this.message = 'Computer wins!';
+    this.message = '<i class="bi bi-emoji-frown-fill me-2"></i> You loose!';
     this.gameOver = true;
     return;
   }
