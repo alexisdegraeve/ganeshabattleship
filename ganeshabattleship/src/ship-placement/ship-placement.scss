@@ -1,3 +1,27 @@
+.message {
+    height: 1.25rem;
+}
+
+.instruction {
+    margin-top: 1rem;
+}
+
+.ship-icon {
+    background-image: url('/img/icon_ship.svg');
+    height: 3.125rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 3.125rem;
+    display: flex;
+}
+
+.ship-icon-vertical {
+    @extend .ship-icon;
+    transform: rotate(90deg);
+    height: 3.125rem;
+}
+
 .cell {
     width: 30px;
     height: 30px;

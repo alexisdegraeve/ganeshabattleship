@@ -28,3 +28,20 @@ h6 {
         }
     }
 }
+
+.btn-group {
+    .btn {
+        border: 2px solid transparent;
+        background-color: #018FD0;
+        &:hover {
+            transition: none;
+            background-color: #03425E;
+            border: 2px solid #fff;
+        }
+        &:active {
+            transition: none;
+            background-color: #03425E;
+            border: 2px solid #fff;
+        }
+    }
+}

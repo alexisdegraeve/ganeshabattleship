@@ -1,5 +1,5 @@
-<div class="container mt-4 text-center">
-    <h2>Place Your Ships</h2>
+<div class="container text-center">
+    <h2 class="instruction">Place Your Ships</h2>
 
     <p>
         @if (currentShipIndex
@@ -11,16 +11,15 @@
 
         <!-- Horizontal -->
         <input type="radio" class="btn-check" name="orientation" id="orientation-horizontal" [checked]="horizontal" (change)="horizontal = true">
-        <label class="btn btn-outline-secondary" for="orientation-horizontal">
-    <i class="bi bi-distribute-horizontal me-1"></i>
-    Horizontal
+        <label class="btn btn-primary" for="orientation-horizontal">
+        <div class="ship-icon"></div>
+       
   </label>
 
         <!-- Vertical -->
         <input type="radio" class="btn-check" name="orientation" id="orientation-vertical" [checked]="!horizontal" (change)="horizontal = false">
-        <label class="btn btn-outline-secondary" for="orientation-vertical">
-    <i class="bi bi-distribute-vertical me-1"></i>
-    Vertical
+        <label class="btn btn-primary" for="orientation-vertical">
+    <div class="ship-icon-vertical"></div>
   </label>
 
     </div>
@@ -44,10 +43,10 @@
         }
     </div>
 
-    <p class="mt-3 text-danger">{{ message }}</p>
+    <p class="mt-1 text-white message">{{ message }}</p>
 
-    <div class="mt-3">
-        <button class="btn btn-success" (click)="startGame()">Start Game</button>
-        <button class="btn btn-outline-danger ms-2" (click)="resetGrid()">Reset</button>
+    <div>
+        <button class="btn btn-success" (click)="startGame()"><i class="bi bi-check me-2"></i>Ready</button>
+        <button class="btn btn-dark ms-2" (click)="resetGrid()">Reset</button>
     </div>
 </div>
