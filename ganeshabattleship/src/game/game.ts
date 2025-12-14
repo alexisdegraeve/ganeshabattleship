@@ -25,7 +25,7 @@ export class GameComponent {
   computerWin = false;
 
   playerTurn = true;
-  gameOver = false;
+  gameOver = false; 
   message = '';
 
   constructor(private gameService: GameService, private router: Router) { }
@@ -199,7 +199,7 @@ computerTurn() {
 
   restartGame() {
     //this.ngOnInit();
-     this.router.navigate(['/ship-placement']);
+      this.router.navigate(['/welcome']);
     // this.playerTurn = true;
     // this.gameOver = false;
     // this.message = '';

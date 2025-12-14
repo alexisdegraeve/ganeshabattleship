@@ -59,24 +59,20 @@
     <button class="btn btn-danger mt-3 " (click)="restartGame() "><i class="bi bi-stop-fill me-2"></i>Stop</button> } @if (gameOver) { @if(computerWin) {
     <div class="end-game">
         <h2>Well done!</h2>
-        <div>
+        <div class="end-container">
             <div class="star"></div>
-            <div class="info">You <span class="red">win</span>!</div>
+            <div class="info-txt">You <span class="yellow">win</span>!</div>
         </div>
     </div>} @else {
     <div class="end-game">
         <h2>Sorry!</h2>
-        <div>
+        <div class="end-container">
             <div class="plus"></div>
-            <div class="info">You <span class="red">loose</span>!</div>
+            <div class="info-txt">You <span class="red">loose</span>!</div>
         </div>
 
     </div>
     }
     <!-- GAME OVER BLOCK -->
-    <div class="alert alert-info mt-3 ">
-        <h3 [innerHTML]="message"></h3>
-        <button class="btn btn-dark mt-auto " (click)="restartGame() "><i class="bi bi-play-fill me-2"></i>Play</button>
-    </div>
-    }
+    <button class="btn btn-lg btn-dark mt-auto " (click)="restartGame() "><i class="bi bi-play-fill me-2"></i>Restart</button> }
 </div>

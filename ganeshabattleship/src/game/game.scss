@@ -1,23 +1,38 @@
+.end-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
 .end-game {
     display: flex;
     flex-direction: column;
-    .info {
+    align-items: center;
+    flex-direction: column;
+    .info-txt {
         font-size: 64px;
-        &.yellow {
+        color: #fff;
+        .yellow {
             color: #FFE100;
         }
-        &.red {
-            color: #FFACAC;
+        .red {
+            color: #FF0000;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #fff;
         }
     }
     .plus {
         background-image: url('/img/icon_plus.svg');
         background-repeat: no-repeat;
+        background-position: center;
         width: 8.125rem;
         height: 8.125rem;
     }
     .star {
         background-image: url('/img/icon_star.svg');
+        background-position: center;
         background-repeat: no-repeat;
         width: 8.125rem;
         height: 8.125rem;
