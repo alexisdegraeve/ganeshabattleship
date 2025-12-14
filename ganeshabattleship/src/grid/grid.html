@@ -6,14 +6,13 @@
             @for (cell of row; track $index;let j = $index) {
             <div class="cell" [class.disabled]="!clickable" (click)="handleClick(i, j)" [class.horizontal]="isShipHorizontal(i, j)">
 
-                <div class="inside-cell" [ngClass]="{
-    'ship': cell === 1,
-    'ship-middle': grid[i][j] === 2,
-    'ship-start': isShipStart(i,  j) &&  cell === 2,
-    'hit': hits[i][j] && cell=== 0,
-    'ship-end': isShipEnd(i, j) &&  cell === 2,
-    'vertical': isShipVertical(i, j),
-    'horizontal': isShipHorizontal(i, j)
+                <div class="inside-cell" [ngStyle]="{'--ship-size': getShipSizeAt(i, j)}" [ngClass]="{
+        'ship-start': hits[i][j] && isShipStart(i, j),
+        'ship-middle': hits[i][j] && isShipMiddle(i, j),
+        'ship-end': hits[i][j] && isShipEnd(i, j),
+        'horizontal': hits[i][j] && isShipHorizontal(i, j),
+        'vertical': hits[i][j] && isShipVertical(i, j),
+        'hit': hits[i][j] && grid[i][j] === 0
   }"></div>
             </div>
 

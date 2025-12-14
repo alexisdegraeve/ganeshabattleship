@@ -57,5 +57,10 @@ isShipVertical(row: number, col: number) {
   return ship.positions![0].col === ship.positions![1]?.col;
 }
 
+getShipSizeAt(row: number, col: number): number {
+  const ship = this.gameService.findShipByPosition(this.ships, row, col);
+  return ship ? ship.positions!.length : 1;
+}
+
 
 }

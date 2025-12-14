@@ -16,6 +16,8 @@
 .inside-cell {
     width: 30px;
     height: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
 .grid-container {
@@ -28,42 +30,58 @@
     pointer-events: none;
 }
 
+.ship-start,
+.ship-middle,
+.ship-end {
+    background-image: url('/img/icon_ship.svg');
+    background-repeat: no-repeat;
+    border: 1px solid red;
+}
+
+.ship-start.horizontal,
+.ship-middle.horizontal,
+.ship-end.horizontal {
+    background-size: calc(var(--ship-size) * 100%) 100%;
+}
+
 .ship-start.horizontal {
-    border-radius: 50% 0 0 50% / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: 0% center;
+}
+
+.ship-middle.horizontal {
+    background-position: calc(100% / (var(--ship-size) - 1)) center;
 }
 
 .ship-end.horizontal {
-    border-radius: 0 50% 50% 0 / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: 100% center;
+}
+
+.ship-start.vertical,
+.ship-middle.vertical,
+.ship-end.vertical {
+    background-size: calc(var(--ship-size) * 100%) 100%;
+    transform: rotate(90deg);
 }
 
 .ship-start.vertical {
-    border-radius: 50% 50% 0 0 / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: 0% center;
+}
+
+.ship-middle.vertical {
+    background-position: calc(100% / (var(--ship-size) - 1)) center;
 }
 
 .ship-end.vertical {
-    background-color: black;
-    border-radius: 0 0 50% 50% / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: 100% center;
 }
 
-.ship-middle {
-    background: red;
-}
-
+// .ship-middle {
+//     background: red;
+// }
 .hit {
-    border-radius: 50%;
-    background-color: rgba(0, 0, 255, 0.35);
     width: 1rem;
     height: 1rem;
+    inset: 0;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 255, 0.25);
 }
