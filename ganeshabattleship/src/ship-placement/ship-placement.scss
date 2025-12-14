@@ -37,39 +37,96 @@
     height: 30px;
 }
 
+
+/* Base navire */
+
+.ship-start,
+.ship-middle,
+.ship-end {
+    background-image: url('/img/icon_ship.svg');
+    background-repeat: no-repeat;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ship-start.horizontal,
+.ship-middle.horizontal,
+.ship-end.horizontal {
+    background-size: calc(var(--ship-size) * 100%) 100%;
+}
+
 .ship-start.horizontal {
-    border-radius: 50% 0 0 50% / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: left center;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.ship-middle.horizontal {
+    background-position: center center;
+    border-radius: 0;
 }
 
 .ship-end.horizontal {
-    border-radius: 0 50% 50% 0 / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: right center;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+
+/* Vertical */
+
+.ship-start.vertical,
+.ship-middle.vertical,
+.ship-end.vertical {
+    background-size: 100% calc(var(--ship-size) * 100%);
+    transform: rotate(90deg);
 }
 
 .ship-start.vertical {
-    border-radius: 50% 50% 0 0 / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: top center;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.ship-middle.vertical {
+    background-position: center center;
+    border-radius: 0;
 }
 
 .ship-end.vertical {
-    background-color: black;
-    border-radius: 0 0 50% 50% / 50% 50%;
-    border: 1px solid red !important;
-    border-right: 1px solid transparent !important;
-    background: red;
+    background-position: bottom center;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.ship-middle {
-    background: red;
-}
-
+// .ship-start.horizontal {
+//     background-image: url('/img/icon_ship.svg');
+//     background-repeat: no-repeat;
+//     border-radius: 50% 0 0 50% / 50% 50%;
+//     border: 1px solid red !important;
+//     border-right: 1px solid transparent !important;
+//     //background: red;
+// }
+// .ship-end.horizontal {
+//     border-radius: 0 50% 50% 0 / 50% 50%;
+//     border: 1px solid red !important;
+//     border-right: 1px solid transparent !important;
+//     background: red;
+// }
+// .ship-start.vertical {
+//     border-radius: 50% 50% 0 0 / 50% 50%;
+//     border: 1px solid red !important;
+//     border-right: 1px solid transparent !important;
+//     background: red;
+// }
+// .ship-end.vertical {
+//     background-color: black;
+//     border-radius: 0 0 50% 50% / 50% 50%;
+//     border: 1px solid red !important;
+//     border-right: 1px solid transparent !important;
+//     background: red;
+// }
+// .ship-middle {
+//     background: red;
+// }
 .cell.horizontal {
     border-right: unset;
     border-left: unset;

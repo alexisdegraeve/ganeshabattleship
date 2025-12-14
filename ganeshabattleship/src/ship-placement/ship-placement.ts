@@ -32,6 +32,13 @@ export class ShipPlacementComponent {
   horizontal = true; // orientation: true = horizontal, false = vertical
   message = '';
 
+    get currentShipSize(): number {
+    if (this.currentShipIndex < this.ships.length) {
+      return this.ships[this.currentShipIndex].size;
+    }
+    return 0; // pas de navire actif
+  }
+
   constructor(private router: Router) {}
 
   /** Toggle orientation */
