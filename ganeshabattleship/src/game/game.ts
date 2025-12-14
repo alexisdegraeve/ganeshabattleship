@@ -22,6 +22,7 @@ export class GameComponent {
   lastHit: { row: number, col: number } | null = null;
   playerShips: ShipStatus[] = [];
   computerShips: ShipStatus[] = [];
+  computerWin = false;
 
   playerTurn = true;
   gameOver = false;
@@ -115,8 +116,10 @@ export class GameComponent {
 
 
     // Vérifie si tous les navires sont coulés
+
     if (this.checkWin(this.computerGrid)) {
-      this.message = '<i class="bi bi-trophy-fill me-2"></i> You win!';
+      this.computerWin = false;
+      // this.message = '<i class="bi bi-trophy-fill me-2"></i> You win!';
       this.gameOver = true;
       return;
     }
@@ -182,7 +185,8 @@ computerTurn() {
   this.playerHits = this.playerHits.map(r => [...r]);
 
   if (this.checkWin(this.playerGrid)) {
-    this.message = '<i class="bi bi-emoji-frown-fill me-2"></i> You loose!';
+    this.computerWin = true;
+    // this.message = '<i class="bi bi-emoji-frown-fill me-2"></i> You loose!';
     this.gameOver = true;
     return;
   }

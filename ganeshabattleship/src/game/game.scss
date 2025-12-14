@@ -1,3 +1,29 @@
+.end-game {
+    display: flex;
+    flex-direction: column;
+    .info {
+        font-size: 64px;
+        &.yellow {
+            color: #FFE100;
+        }
+        &.red {
+            color: #FFACAC;
+        }
+    }
+    .plus {
+        background-image: url('/img/icon_plus.svg');
+        background-repeat: no-repeat;
+        width: 8.125rem;
+        height: 8.125rem;
+    }
+    .star {
+        background-image: url('/img/icon_star.svg');
+        background-repeat: no-repeat;
+        width: 8.125rem;
+        height: 8.125rem;
+    }
+}
+
 .more-info {
     background-color: rgba(255, 255, 255, 0.4);
     height: 3rem;

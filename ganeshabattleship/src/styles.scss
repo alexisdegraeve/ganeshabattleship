@@ -18,14 +18,14 @@ h6 {
     transition: transform 0.15s ease;
     &.btn-primary {
         background-color: #03425E;
-        border: 2px solid #fff;
-        color: #fff;
-        &:hover {
-            transform: scale(1.05);
-        }
-        &:active {
-            transform: scale(0.95);
-        }
+    }
+    border: 2px solid #fff;
+    color: #fff;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:active {
+        transform: scale(0.95);
     }
 }
 
