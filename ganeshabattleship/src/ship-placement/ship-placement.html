@@ -36,7 +36,9 @@
         'ship-end': isShipEnd(i, j),
         'horizontal': isShipHorizontal(i, j),
         'vertical': isShipVertical(i, j)
-          }"></div>
+          }">
+                    <div *ngIf="isShipStart(i,j) && isShipVertical(i,j)" class="ship-vertical-inner"></div>
+                </div>
             </div>
             }
         </div>

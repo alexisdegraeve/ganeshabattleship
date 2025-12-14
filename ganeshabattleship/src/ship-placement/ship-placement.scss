@@ -35,6 +35,8 @@
 .inside-cell {
     width: 30px;
     height: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
 
@@ -43,17 +45,16 @@
 .ship-start,
 .ship-middle,
 .ship-end {
-    background-image: url('/img/icon_ship.svg');
-    background-repeat: no-repeat;
     border: 1px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .ship-start.horizontal,
 .ship-middle.horizontal,
 .ship-end.horizontal {
+    background-image: url('/img/icon_ship.svg');
+    background-repeat: no-repeat;
     background-size: calc(var(--ship-size) * 100%) 100%;
 }
 
@@ -72,61 +73,26 @@
     border-radius: 0 0.5rem 0.5rem 0;
 }
 
-
-/* Vertical */
-
 .ship-start.vertical,
 .ship-middle.vertical,
 .ship-end.vertical {
-    background-size: 100% calc(var(--ship-size) * 100%);
-    transform: rotate(90deg);
+    border: 1px solid red;
 }
 
-.ship-start.vertical {
+.ship-vertical-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(var(--ship-size) * 100%);
+    background-image: url('/img/icon_ship.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-position: top center;
-    border-radius: 0.5rem 0.5rem 0 0;
+    transform: rotate(90deg) translateY(-100%);
+    transform-origin: top left;
 }
 
-.ship-middle.vertical {
-    background-position: center center;
-    border-radius: 0;
-}
-
-.ship-end.vertical {
-    background-position: bottom center;
-    border-radius: 0 0 0.5rem 0.5rem;
-}
-
-// .ship-start.horizontal {
-//     background-image: url('/img/icon_ship.svg');
-//     background-repeat: no-repeat;
-//     border-radius: 50% 0 0 50% / 50% 50%;
-//     border: 1px solid red !important;
-//     border-right: 1px solid transparent !important;
-//     //background: red;
-// }
-// .ship-end.horizontal {
-//     border-radius: 0 50% 50% 0 / 50% 50%;
-//     border: 1px solid red !important;
-//     border-right: 1px solid transparent !important;
-//     background: red;
-// }
-// .ship-start.vertical {
-//     border-radius: 50% 50% 0 0 / 50% 50%;
-//     border: 1px solid red !important;
-//     border-right: 1px solid transparent !important;
-//     background: red;
-// }
-// .ship-end.vertical {
-//     background-color: black;
-//     border-radius: 0 0 50% 50% / 50% 50%;
-//     border: 1px solid red !important;
-//     border-right: 1px solid transparent !important;
-//     background: red;
-// }
-// .ship-middle {
-//     background: red;
-// }
 .cell.horizontal {
     border-right: unset;
     border-left: unset;
