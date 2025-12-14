@@ -32,11 +32,9 @@ export class ShipPlacementComponent {
   horizontal = true; // orientation: true = horizontal, false = vertical
   message = '';
 
-    get currentShipSize(): number {
-    if (this.currentShipIndex < this.ships.length) {
-      return this.ships[this.currentShipIndex].size;
-    }
-    return 0; // pas de navire actif
+  getShipSizeAt(row: number, col: number): number {
+    const ship = this.findShipByPosition(row, col);
+    return ship ? ship.size : 1; // par défaut 1 si aucune
   }
 
   constructor(private router: Router) {}

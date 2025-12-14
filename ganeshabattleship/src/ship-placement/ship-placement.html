@@ -30,7 +30,7 @@
         <div class="d-flex">
             @for (cell of row; track $index; let j = $index) {
             <div class="cell" (click)="onCellClick(i, j)" [class.horizontal]="isShipHorizontal(i, j)">
-                <div class="inside-cell" [ngStyle]="{'--ship-size': currentShipSize}" [ngClass]="{
+                <div class="inside-cell" [ngStyle]="{'--ship-size': getShipSizeAt(i, j)}" [ngClass]="{
           'ship-start': isShipStart(i, j),
         'ship-middle': isShipMiddle(i, j),
         'ship-end': isShipEnd(i, j),
