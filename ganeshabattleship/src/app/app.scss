@@ -1,3 +1,5 @@
+/* Home */
+
 .full-height {
     min-height: 100vh; // assure au moins la hauteur de la fenêtre
     height: 100%; // permet de grandir si contenu plus grand
@@ -6,7 +8,7 @@
 
 .water {
     padding: 0.25rem;
-    background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #1e90ff 100%);
+    background: linear-gradient(180deg, #00B0FF 0%, #033048 100%);
     background-size: 200% 200%;
     animation: gradientShift 6s ease infinite;
 }

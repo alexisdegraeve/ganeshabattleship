@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    font-family: 'Anton', sans-serif;
+    font-family: 'ABeeZee', sans-serif;
 }
 
 h1,
@@ -10,5 +10,21 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'ABeeZee', sans-serif;
+}
+
+.btn {
+    border-radius: 2rem;
+    transition: transform 0.15s ease;
+    &.btn-primary {
+        background-color: #03425E;
+        border: 2px solid #fff;
+        color: #fff;
+        &:hover {
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(0.95);
+        }
+    }
 }
