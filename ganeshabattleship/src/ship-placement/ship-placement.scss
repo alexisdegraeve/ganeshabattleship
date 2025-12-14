@@ -46,15 +46,13 @@
 .ship-middle,
 .ship-end {
     border: 1px solid red;
-    position: relative;
-    overflow: hidden;
+    background-image: url('/img/icon_ship.svg');
+    background-repeat: no-repeat;
 }
 
 .ship-start.horizontal,
 .ship-middle.horizontal,
 .ship-end.horizontal {
-    background-image: url('/img/icon_ship.svg');
-    background-repeat: no-repeat;
     background-size: calc(var(--ship-size) * 100%) 100%;
 }
 
@@ -76,21 +74,20 @@
 .ship-start.vertical,
 .ship-middle.vertical,
 .ship-end.vertical {
-    border: 1px solid red;
+    background-size: calc(var(--ship-size) * 100%) 100%;
+    transform: rotate(90deg);
 }
 
-.ship-vertical-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: calc(var(--ship-size) * 100%);
-    background-image: url('/img/icon_ship.svg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: top center;
-    transform: rotate(90deg) translateY(-100%);
-    transform-origin: top left;
+.ship-start.vertical {
+    background-position: 0% center;
+}
+
+.ship-middle.vertical {
+    background-position: calc(100% / (var(--ship-size) - 1)) center;
+}
+
+.ship-end.vertical {
+    background-position: 100% center;
 }
 
 .cell.horizontal {
