@@ -5,31 +5,8 @@
         <div [innerHTML]="message"></div>
     </div>
 
-
+    <span class="game-info">Click on the grid to attack the computer's ships</span>
     <div class="row">
-        <div class="col">
-            <div class="container-grid">
-                <h4><span class="owner">Your Grid</span><span class="name"><i class="bi bi-yin-yang me-2"></i>Human</span></h4>
-                <div>
-                    <app-grid [clickable]="false" [ships]="playerShips" [grid]="playerGrid" [hits]="playerHits"></app-grid>
-                    <div>
-                        <ul class="info">
-                            @for (ship of playerShips; track $index; let i = $index) {
-                            <li class="item">
-                                <div class="name">
-                                    <span>{{ ship.name }}</span>
-                                </div>
-                                <div class="hits">
-                                    {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
-                                </div>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="col ">
             <div class="container-grid">
                 <h4><span class="owner yellow"><i class="bi bi-star-fill"></i>Grid to play</span><span class="name yellow"><i class="bi bi-robot me-2"></i>Computer</span></h4>
@@ -54,6 +31,30 @@
 
             </div>
         </div>
+        <div class="col">
+            <div class="container-grid">
+                <h4><span class="owner">Your Grid</span><span class="name"><i class="bi bi-controller me-2"></i>Human</span></h4>
+                <div>
+                    <app-grid [clickable]="false" [ships]="playerShips" [grid]="playerGrid" [hits]="playerHits"></app-grid>
+                    <div>
+                        <ul class="info">
+                            @for (ship of playerShips; track $index; let i = $index) {
+                            <li class="item">
+                                <div class="name">
+                                    <span>{{ ship.name }}</span>
+                                </div>
+                                <div class="hits">
+                                    {{ ship.hits }}/{{ ship.size }} @if (ship.sunk) { (Sunk!) }
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <button class="btn btn-danger mt-3 " (click)="restartGame() "><i class="bi bi-stop-fill me-2"></i>Stop</button> } @if (gameOver) { @if(computerWin) {
