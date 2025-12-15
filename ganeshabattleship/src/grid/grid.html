@@ -1,7 +1,21 @@
 <div class="full-grid">
     <div class="grid-container">
+        <div class="d-flex">
+            <!-- coin vide -->
+            <div class="cell header-cell"></div>
+
+            @for (col of grid[0]; track $index; let j = $index) {
+            <div class="cell header-cell">
+                {{ j + 1 }}
+            </div>
+            }
+        </div>
         @for (row of grid; track $index; let i = $index) {
         <div class="d-flex">
+
+            <div class="cell header-cell">
+                {{ i + 1 }}
+            </div>
 
             @for (cell of row; track $index;let j = $index) {
             <div class="cell" [class.disabled]="!clickable" (click)="handleClick(i, j)" [class.horizontal]="isShipHorizontal(i, j)">

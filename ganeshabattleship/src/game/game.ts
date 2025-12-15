@@ -25,7 +25,7 @@ export class GameComponent {
   computerWin = false;
 
   playerTurn = true;
-  gameOver = false; 
+  gameOver = false;
   message = '';
 
   constructor(private gameService: GameService, private router: Router) { }
@@ -178,7 +178,7 @@ computerTurn() {
     });
 
   } else {
-    this.message = `Computer misses at (${row}, ${col}).`;
+    this.message = `Computer misses at (${row+1}, ${col+1}).`;
   }
 
   this.playerGrid = this.playerGrid.map(r => [...r]);

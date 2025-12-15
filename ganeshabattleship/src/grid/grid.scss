@@ -1,3 +1,15 @@
+.header-cell {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: default;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .full-grid {
     display: flex;
     flex-direction: column;
